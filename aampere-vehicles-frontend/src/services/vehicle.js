@@ -6,7 +6,7 @@ export async function getAllVehicles() {
   return data
 }
 
-export async function getVehicleById(id) {
+export async function getVehicleById({ id }) {
   const response = await fetch(`${API_URI}/vehicles/${id}`)
   const data = await response.json()
   return data
