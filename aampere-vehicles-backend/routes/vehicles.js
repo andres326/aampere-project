@@ -1,27 +1,16 @@
 import { Router } from 'express'
-import { readFile } from '../utils.js'
-import { validateVehicle } from '../schemas/vehicle.js'
-
-const vehicles = readFile('./vehicles.json')
+import { VehicleController } from '../controllers/vehicle.js'
 
 const router = Router()
 
-router.get('/', (req, res) => {
-  res.json(vehicles)
-})
+router.get('/', VehicleController.getAll)
 
-router.post('/', (req, res) => {
-  const vehicle = validateVehicle(req.body)
-  res.json(vehicle)
-})
+router.get('/:id', VehicleController.getById)
 
-router.put('/:id', (req, res) => {
-  const vehicle = validateVehicle(req.body)
-  res.json(vehicle)
-})
+router.post('/', VehicleController.create)
 
-router.delete('/:id', (req, res) => {
-  res.json({ message: 'Vehicle deleted' })
-})
+router.put('/:id', VehicleController.update)
+
+router.delete('/:id', VehicleController.delete)
 
 export { router as vehicleRouter }

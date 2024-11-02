@@ -1,0 +1,32 @@
+### Retrieve all vehicles
+GET http://localhost:3000/vehicles
+
+### Retrieve a vehicle by id
+GET http://localhost:3000/vehicles/1
+
+### Create a vehicle
+POST http://localhost:3000/vehicles
+Content-Type: application/json
+
+{
+  "brand": "Mazda",
+  "model": "6",
+  "year": 2020,
+  "color": "Red",
+  "price": 10000
+}
+
+### Update a vehicle
+PUT http://localhost:3000/vehicles/cb7f5617-3e54-4768-b8fa-4cbb61d07820
+Content-Type: application/json
+
+{
+  "brand": "Mazda",
+    "model": "6",
+    "year": 2020,
+    "color": "Red",
+    "price": 100000
+}
+
+### Delete a vehicle
+DELETE http://localhost:3000/vehicles/1
