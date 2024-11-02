@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "brand": "Toyota",
+    "model": "Camry",
+    "year": 2020,
+    "color": "Red",
+    "price": 10000
+  },
+  {
+    "id": "2",
+    "brand": "Honda",
+    "model": "Civic",
+    "year": 2020,
+    "color": "Blue",
+    "price": 15000
+  },
+  {
+    "id": "3",
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 2020,
+    "color": "Black",
+    "price": 20000
+  }
+]
