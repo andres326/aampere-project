@@ -9,11 +9,22 @@ POST http://localhost:3000/vehicles
 Content-Type: application/json
 
 {
-  "brand": "Mazda",
-  "model": "6",
-  "year": 2020,
-  "color": "Red",
-  "price": 10000
+    "brand": "Mazda",
+    "model": "6",
+    "year": 2020,
+    "price": 69559,
+    "range_km": 610,
+    "color": "Red",
+    "condition": "Used",
+    "battery_capacity_kWh": 100,
+    "charging_speed_kW": 250,
+    "seats": 5,
+    "drivetrain": "AWD",
+    "location": "Berlin",
+    "autopilot": true,
+    "kilometer_count": 25000,
+    "accidents": false,
+    "accident_description": "No accidents"
 }
 
 ### Update a vehicle
@@ -21,11 +32,21 @@ PUT http://localhost:3000/vehicles/cb7f5617-3e54-4768-b8fa-4cbb61d07820
 Content-Type: application/json
 
 {
-  "brand": "Mazda",
+    "brand": "Mazda",
     "model": "6",
-    "year": 2020,
+    "year": 2019,
+    "price": 69559,
+    "range_km": 610,
     "color": "Red",
-    "price": 100000
+    "condition": "Used",
+    "battery_capacity_kWh": 100,
+    "charging_speed_kW": 250,
+    "seats": 5,
+    "drivetrain": "AWD",
+    "location": "Berlin",
+    "autopilot": true,
+    "kilometer_count": 25000,
+    "accidents": false,
 }
 
 ### Delete a vehicle
