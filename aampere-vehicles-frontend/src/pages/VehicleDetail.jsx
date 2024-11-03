@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useVehicleDetail } from '../hooks/useVehicleDetail'
 import { useVehicle } from '../hooks/useVehicle'
 import { priceformatted } from '../utils/format'
@@ -7,6 +7,7 @@ import { BackIcon } from '../components/Icons'
 import { Image } from '../components/Image'
 import { Item } from '../components/Item'
 import { useMemo } from 'react'
+import { AnimatedLink } from '../components/AnimatedLink'
 
 export const VehicleDetail = () => {
   const { id } = useParams()
@@ -19,13 +20,13 @@ export const VehicleDetail = () => {
 
   return (
     <main className="flex flex-col min-h-screen px-4 py-12 w-full mx-auto max-w-4xl">
-      <Link
+      <AnimatedLink
         to="/"
         className="flex text-sm items-center underline mb-4 hover:text-blue-600"
       >
         <BackIcon height={16} width={16} />
         Back to list
-      </Link>
+      </AnimatedLink>
       <article className="flex flex-col sm:gap-8 md:flex-row mb-8">
         <Image
           src={'/car.webp'}
