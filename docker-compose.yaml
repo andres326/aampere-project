@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  frontend:
+    build:
+      context: ./aampere-vehicles-frontend
+      dockerfile: Dockerfile
+    container_name: aampere-frontend
+    restart: always
+    ports:
+      - 4000:4000
+    environment:
+      - VITE_API_URI=http://localhost:3000
+  backend:
+    build:
+      context: ./aampere-vehicles-backend
+      dockerfile: Dockerfile
+    container_name: aampere-backend
+    restart: always
+    ports:
+      - 3000:3000
