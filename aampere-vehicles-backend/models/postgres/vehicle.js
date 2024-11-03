@@ -1,14 +1,14 @@
 // db.js
 import postgres from 'postgres'
 
-const DEFAULT_CONFIG = {
-  host: 'localhost',
-  user: 'postgres',
-  port: 5432,
-  password: 'postgres',
-  database: 'EVS_Aampere',
+const CONFIG = {
+  host: process.env.DATABASE_HOST ?? 'localhost',
+  user: process.env.DATABASE_USER ?? 'postgres',
+  port: process.env.DATABASE_PORT ?? 5432,
+  password: process.env.DATABASE_PASSWORD ?? 'example',
+  database: process.env.DATABASE_NAME ?? 'EVS_Aampere',
 }
-const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG
+const connectionString = CONFIG
 
 const sql = postgres(connectionString)
 

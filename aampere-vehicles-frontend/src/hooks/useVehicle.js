@@ -12,6 +12,7 @@ export const useVehicle = () => {
       const vehicles = await getAllVehicles()
       setVehicles(vehicles)
     } catch {
+      setVehicles([])
     } finally {
       setLoading(false)
     }

@@ -1,5 +1,19 @@
 version: "3.9"
 services:
+  db:
+    image: postgres
+    container_name: postgres_db
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: EVS_Aampere
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - aampere-network
   frontend:
     build:
       context: ./aampere-vehicles-frontend
@@ -10,6 +24,8 @@ services:
       - 4000:4000
     environment:
       - VITE_API_URI=http://localhost:3000
+    networks:
+      - aampere-network
   backend:
     build:
       context: ./aampere-vehicles-backend
@@ -18,3 +34,14 @@ services:
     restart: always
     ports:
       - 3000:3000
+    environment:
+      - DATABASE_HOST=postgres_db
+      - DATABASE_PORT=5432
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=example
+      - DATABASE_NAME=EVS_Aampere
+    networks:
+      - aampere-network
+networks:
+  aampere-network:
+    driver: bridge

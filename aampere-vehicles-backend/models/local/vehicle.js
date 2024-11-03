@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import { readFile } from '../../utils/require-path.js'
-const vehicles = readFile('./vehicles.json')
+const vehicles = readFile('../vehicles.json')
 
 export class VehicleModel {
   static async getAll() {

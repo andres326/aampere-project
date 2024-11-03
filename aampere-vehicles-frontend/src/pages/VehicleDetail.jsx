@@ -3,6 +3,7 @@ import { useVehicleDetail } from '../hooks/useVehicleDetail'
 import { priceformatted } from '../utils/format'
 import { Badge } from '../components/Badge'
 import { BackIcon } from '../components/Icons'
+import { Image } from '../components/Image'
 
 export const VehicleDetail = () => {
   const { id } = useParams()
@@ -18,9 +19,10 @@ export const VehicleDetail = () => {
         Back
       </Link>
       <article className="flex flex-col sm:gap-8 sm:flex-row">
-        <img
-          src={`https://d.newsweek.com/en/full/2223161/2024-lincoln-nautilus.jpg?w=400&e=e474d5058b0c341cd5369f7aa7e9164c`}
+        <Image
+          src={'/car.webp'}
           alt={vehicle.brand}
+          className="w-full sm:w-1/2 aspect-video"
         />
         <div className="flex flex-col py-2">
           <span className="text-md font-normal text-blue-600 mb-2">
@@ -31,27 +33,35 @@ export const VehicleDetail = () => {
             <span className="text-xl">{vehicle.model}</span>
           </label>
           <span className="text-lg font-bold text-rose-400 mb-4">
-            {priceformatted(vehicle.price)}
+            {priceformatted(vehicle.price || 0)}
           </span>
           <p className="text-sm font-semibold">
             From: <span className="font-normal">{vehicle.year}</span>
           </p>
           <p className="text-sm font-semibold">
             Battery capacity:{' '}
-            <span className="font-normal">
-              {vehicle.battery_capacity_kWh} kWh
-            </span>
+            <span className="font-normal">{vehicle.batteryCapacity} kWh</span>
           </p>
           <p className="text-sm font-semibold mb-4">
             Charging speed:{' '}
-            <span className="font-normal">{vehicle.charging_speed_kW} kW</span>
+            <span className="font-normal">{vehicle.chargingSpeed} kW</span>
           </p>
           <div className="flex flex-wrap gap-2">
-            <Badge text={`${vehicle.seats} seats`} />
-            <Badge text={vehicle.condition} />
-            <Badge text={vehicle.drivetrain} />
+            <Badge
+              text={`${vehicle.seats} seats`}
+              classes={'bg-gray-50 text-gray-600'}
+            />
+            <Badge
+              text={vehicle.condition}
+              classes={'bg-gray-50 text-gray-600'}
+            />
+            <Badge
+              text={vehicle.drivetrain}
+              classes={'bg-gray-50 text-gray-600'}
+            />
             <Badge
               text={vehicle.autopilot ? 'With autopilot' : 'No autopilot'}
+              classes={'bg-gray-50 text-gray-600'}
             />
             {vehicle.accidents ?? <Badge text={'No accidents'} />}
           </div>
