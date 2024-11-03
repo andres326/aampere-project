@@ -1,15 +1,19 @@
 import express, { json } from 'express'
 import cors from 'cors'
-import { vehicleRouter } from './routes/vehicles.js'
+import { createVehicleRouter } from './routes/vehicles.js'
+import { errorHandler } from './middlewares/error.js'
 
-const app = express()
-const port = process.env.PORT || 3000
+export const createApp = ({ vehicleModel }) => {
+  const app = express()
+  const port = process.env.PORT || 3000
 
-app.use(json())
-app.use(cors())
+  app.use(json())
+  app.use(cors())
 
-app.use('/vehicles', vehicleRouter)
+  app.use('/vehicles', createVehicleRouter({ vehicleModel }))
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`)
-})
+  app.use(errorHandler)
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`)
+  })
+}

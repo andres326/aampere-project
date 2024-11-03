@@ -1,57 +1,81 @@
 import { validateVehicle } from '../schemas/vehicle.js'
-import { VehicleModel } from '../models/vehicle.js'
+import { errors } from '../utils/constants.js'
 
 export class VehicleController {
-  static async getAll(req, res) {
-    const vehicles = await VehicleModel.getAll()
-    return res.json(vehicles)
+  constructor({ vehicleModel }) {
+    this.vehicleModel = vehicleModel
   }
 
-  static async getById(req, res) {
-    const { id } = req.params
-    const vehicle = await VehicleModel.get({ id })
-    if (!vehicle) {
-      return res.status(404).json({ message: 'Vehicle not found' })
+  getAll = async (req, res, next) => {
+    try {
+      const vehicles = await this.vehicleModel.getAll()
+      return res.json(vehicles)
+    } catch (error) {
+      next({ name: errors.DB_ERROR, error })
     }
-    return res.json(vehicle)
   }
 
-  static async create(req, res) {
+  getById = async (req, res, next) => {
+    const { id } = req.params
+    try {
+      const vehicle = await this.vehicleModel.get({ id })
+      if (!vehicle) {
+        return res.status(404).json({ message: 'Vehicle not found' })
+      }
+      return res.json(vehicle)
+    } catch (error) {
+      next({ name: errors.DB_ERROR, error })
+    }
+  }
+
+  create = async (req, res, next) => {
     const vehicleBody = validateVehicle(req.body)
 
     if (!vehicleBody.success) {
-      return res.status(400).json(vehicleBody.error)
+      return next({ name: errors.VALIDATION_ERROR, errors: vehicleBody.error })
     }
 
     const vehicle = vehicleBody.data
-    const newVehicle = await VehicleModel.create({ vehicle })
-    return res.json(newVehicle)
+    try {
+      const newVehicle = await this.vehicleModel.create({ vehicle })
+      return res.json(newVehicle)
+    } catch (error) {
+      next({ name: errors.DB_ERROR, error })
+    }
   }
 
-  static async update(req, res) {
+  update = async (req, res, next) => {
     const vehicleBody = validateVehicle(req.body)
 
     if (!vehicleBody.success) {
-      return res.status(400).json(vehicleBody.error)
+      return next({ name: errors.VALIDATION_ERROR, errors: vehicleBody.error })
     }
 
     const vehicle = vehicleBody.data
     const { id } = req.params
 
-    const updatedVehicle = await VehicleModel.update({ id, vehicle })
-    if (!updatedVehicle) {
-      return res.status(404).json({ message: 'Vehicle not found' })
-    }
+    try {
+      const updatedVehicle = await this.vehicleModel.update({ id, vehicle })
+      if (!updatedVehicle) {
+        return res.status(404).json({ message: 'Vehicle not found' })
+      }
 
-    return res.json(updatedVehicle)
+      return res.json(updatedVehicle)
+    } catch (error) {
+      next({ name: errors.DB_ERROR, error })
+    }
   }
 
-  static async delete(req, res) {
+  delete = async (req, res, next) => {
     const { id } = req.params
-    const vehicle = await VehicleModel.delete({ id })
-    if (!vehicle) {
-      return res.status(404).json({ message: 'Vehicle not found' })
+    try {
+      const vehicle = await this.vehicleModel.delete({ id })
+      if (!vehicle) {
+        return res.status(404).json({ message: 'Vehicle not found' })
+      }
+      return res.json({ message: 'Vehicle deleted' })
+    } catch (error) {
+      next({ name: errors.DB_ERROR, error })
     }
-    return res.json({ message: 'Vehicle deleted' })
   }
 }

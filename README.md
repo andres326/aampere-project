@@ -47,6 +47,6 @@ After that, you can access the frontend at http://localhost:4000 and the backend
 
 ## Deploying the project
 
-If you want to deploy the project, you can use any provider of your choice. For example, we can use an EC2 instance with Docker installed and run the project with same commands as before. If we want to use a sofisticated solution like Kubernetes to orchestrate the containers, we can check Kubernetes clusters offered by AWS or any other provider.
+If you want to deploy the project, you can use any provider of your choice. For example, we can use an EC2 instance with Docker installed and add a production Dockerfile for backend and frontend with specific configurations such as security, cache, dependency production installation, building the apps in production mode, etc. If we want to use a sofisticated solution like Kubernetes to orchestrate the containers, we can check Kubernetes clusters offered by AWS or any other provider.
 
 If you don't want to use Docker to deploy the project, you can deploy the frontend and backend separately using dedicated services like Vercel, Render, GCP or AWS. Depending on what you prioritize, you can choose the best solution for your project.

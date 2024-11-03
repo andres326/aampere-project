@@ -1,16 +1,20 @@
 import { Router } from 'express'
 import { VehicleController } from '../controllers/vehicle.js'
 
-const router = Router()
+export const createVehicleRouter = ({ vehicleModel }) => {
+  const router = Router()
 
-router.get('/', VehicleController.getAll)
+  const vehicleController = new VehicleController({ vehicleModel })
 
-router.get('/:id', VehicleController.getById)
+  router.get('/', vehicleController.getAll)
 
-router.post('/', VehicleController.create)
+  router.get('/:id', vehicleController.getById)
 
-router.put('/:id', VehicleController.update)
+  router.post('/', vehicleController.create)
 
-router.delete('/:id', VehicleController.delete)
+  router.put('/:id', vehicleController.update)
 
-export { router as vehicleRouter }
+  router.delete('/:id', vehicleController.delete)
+
+  return router
+}
