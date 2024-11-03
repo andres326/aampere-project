@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import { Badge } from './Badge'
 import { Image } from './Image'
-import { AnimatedLink } from './AnimatedLink'
+import { Link } from 'react-router-dom'
 
 export const Item = ({ vehicle, putHorizontal = false }) => {
   return (
-    <AnimatedLink to={`/${vehicle.id}`}>
+    <Link to={`/${vehicle.id}`} viewTransition>
       <div
         className={`flex ${
           putHorizontal ? '' : 'flex-col'
@@ -39,7 +39,7 @@ export const Item = ({ vehicle, putHorizontal = false }) => {
           </div>
         </div>
       </div>
-    </AnimatedLink>
+    </Link>
   )
 }
 
