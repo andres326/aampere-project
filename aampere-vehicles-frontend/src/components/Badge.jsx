@@ -12,5 +12,5 @@ export const Badge = ({ text, classes }) => {
 
 Badge.propTypes = {
   text: PropTypes.string.isRequired,
-  classes: PropTypes.string.isRequired,
+  classes: PropTypes.string,
 }

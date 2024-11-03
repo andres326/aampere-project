@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 
 export const useVehicleDetail = ({ id }) => {
   const [loading, setLoading] = useState(false)
-  const [vehicle, setVehicle] = useState([])
+  const [vehicle, setVehicle] = useState(null)
 
   const getVehicle = async () => {
     try {
@@ -12,6 +12,7 @@ export const useVehicleDetail = ({ id }) => {
       const vehicle = await getVehicleById({ id })
       setVehicle(vehicle)
     } catch {
+      setVehicle(null)
     } finally {
       setLoading(false)
     }
@@ -19,7 +20,7 @@ export const useVehicleDetail = ({ id }) => {
 
   useEffect(() => {
     getVehicle()
-  }, [])
+  }, [id])
 
   return { vehicle, loading }
 }

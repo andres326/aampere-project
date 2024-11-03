@@ -3,11 +3,12 @@ import { readFile } from '../../utils/require-path.js'
 const vehicles = readFile('../vehicles.json')
 
 export class VehicleModel {
-  static async getAll() {
+  static async get({ limit }) {
+    if (limit) return vehicles.slice(0, limit)
     return vehicles
   }
 
-  static async get({ id }) {
+  static async getById({ id }) {
     return vehicles.find((vehicle) => vehicle.id === id)
   }
 

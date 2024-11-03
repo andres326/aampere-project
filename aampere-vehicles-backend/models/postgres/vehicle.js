@@ -31,12 +31,12 @@ const vehicleColumns = [
 ]
 
 export class VehicleModel {
-  static async getAll() {
-    const result = await sql`SELECT * FROM vehicles`
+  static async get({ limit }) {
+    const result = await sql`SELECT * FROM vehicles LIMIT ${limit ?? 100}`
     return result
   }
 
-  static async get({ id }) {
+  static async getById({ id }) {
     const [result] = await sql`SELECT * FROM vehicles WHERE id = ${id}`
     return result
   }

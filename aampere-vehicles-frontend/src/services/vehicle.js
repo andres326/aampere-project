@@ -19,8 +19,10 @@ const mappedVehicles = (vehicle) => ({
   accidentDescription: vehicle.accident_description,
 })
 
-export async function getAllVehicles() {
-  const response = await fetch(`${API_URI}/vehicles`)
+export async function getVehiclesList({ limit = null }) {
+  const response = await fetch(
+    `${API_URI}/vehicles${limit ? `?limit=${limit}` : ''}`
+  )
   const data = await response.json()
   if (data.error) throw new Error(data.error)
 

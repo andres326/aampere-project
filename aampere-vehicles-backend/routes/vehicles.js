@@ -6,7 +6,7 @@ export const createVehicleRouter = ({ vehicleModel }) => {
 
   const vehicleController = new VehicleController({ vehicleModel })
 
-  router.get('/', vehicleController.getAll)
+  router.get('/', vehicleController.get)
 
   router.get('/:id', vehicleController.getById)
 

@@ -6,9 +6,10 @@ export class VehicleController {
     this.vehicleModel = vehicleModel
   }
 
-  getAll = async (req, res, next) => {
+  get = async (req, res, next) => {
     try {
-      const vehicles = await this.vehicleModel.getAll()
+      const { limit } = req.query
+      const vehicles = await this.vehicleModel.get({ limit })
       return res.json(vehicles)
     } catch (error) {
       next({ name: errors.DB_ERROR, error })
@@ -18,7 +19,7 @@ export class VehicleController {
   getById = async (req, res, next) => {
     const { id } = req.params
     try {
-      const vehicle = await this.vehicleModel.get({ id })
+      const vehicle = await this.vehicleModel.getById({ id })
       if (!vehicle) {
         return res.status(404).json({ message: 'Vehicle not found' })
       }
