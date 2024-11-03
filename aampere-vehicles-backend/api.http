@@ -23,8 +23,7 @@ Content-Type: application/json
     "location": "Berlin",
     "autopilot": true,
     "kilometer_count": 25000,
-    "accidents": false,
-    "accident_description": "No accidents"
+    "accidents": false
 }
 
 ### Update a vehicle
@@ -50,4 +49,4 @@ Content-Type: application/json
 }
 
 ### Delete a vehicle
-DELETE http://localhost:3000/vehicles/1
+DELETE http://localhost:3000/vehicles/7be622eb-a896-4118-9ef1-a9d14ea3697b

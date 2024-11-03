@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export const Item = ({ vehicle }) => {
   return (
     <Link to={`/${vehicle.id}`}>
-      <div className="flex p-5 justify-between border rounded border-gray-200 sm:flex-col ">
+      <div className="flex p-5 justify-between border rounded border-gray-200 h-full sm:flex-col ">
         <div className="flex min-w-0 gap-x-4">
           <div className="min-w-0 flex-auto">
             <p>
